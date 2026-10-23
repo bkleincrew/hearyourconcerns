@@ -3,139 +3,262 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>I Want to Hear Your Concerns</title>
-  <meta name="description" content="Bert is traveling Ohio to listen. Tell him what worries you most.">
+  <title>I Want to Hear Your Concerns | Bert Klein</title>
+  <meta name="description" content="Bert Klein is traveling Ohio to listen. Tell him what worries you most.">
+  <meta property="og:title" content="I want to hear your concerns.">
+  <meta property="og:description" content="Bert Klein is traveling Ohio to listen, not to give speeches. Tell him what worries you most.">
+  <meta property="og:url" content="https://hearyourconcerns.com/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#14284b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314284b'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='bold' fill='white' text-anchor='middle'%3EBK%3C/text%3E%3C/svg%3E">
   <style>
     :root {
-      --bg: #fbfaf7;
+      --navy: #14284b;
+      --navy-2: #1f3a66;
+      --red: #c8102e;
+      --bg: #f7f5f0;
       --text: #1d2430;
       --muted: #5a6372;
-      --accent: #1f4e8c;
-      --accent-text: #ffffff;
       --card: #ffffff;
       --line: #e3e0d8;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font: 18px/1.6 Georgia, "Times New Roman", serif;
+      font: 18px/1.65 var(--serif);
     }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
-    header { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
-    h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 12px; }
-    h2 { font-size: 1.4rem; margin: 40px 0 12px; }
-    .lead { font-size: 1.2rem; color: var(--muted); margin: 0; }
-    section { padding-bottom: 8px; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 24px;
-    }
-    label { display: block; font-weight: bold; margin: 16px 0 6px; font-family: system-ui, sans-serif; font-size: 1rem; }
-    .hint { font-weight: normal; color: var(--muted); }
-    input, textarea {
-      width: 100%;
-      padding: 10px 12px;
-      font: inherit;
-      font-size: 1rem;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #fff;
-    }
-    textarea { min-height: 140px; }
-    .check { display: flex; gap: 10px; align-items: center; font-weight: normal; }
-    .check input { width: auto; }
-    button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font: bold 1rem system-ui, sans-serif;
-      background: var(--accent);
-      color: var(--accent-text);
+    a { color: var(--navy-2); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+    .narrow { max-width: 680px; }
+
+    /* Top bar */
+    .topbar { background: var(--navy); color: #fff; border-bottom: 4px solid var(--red); }
+    .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { font: bold 1.15rem var(--sans); letter-spacing: 0.02em; color: #fff; text-decoration: none; }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      font: bold 1rem var(--sans);
+      background: var(--red);
+      color: #fff;
       border: 0;
-      border-radius: 6px;
+      border-radius: 999px;
+      text-decoration: none;
       cursor: pointer;
     }
-    .stops { list-style: none; padding: 0; margin: 0; }
-    .stops li { padding: 12px 0; border-bottom: 1px solid var(--line); }
-    .small { font-size: 0.9rem; color: var(--muted); }
-    footer { margin: 48px 0 32px; font-size: 0.9rem; color: var(--muted); }
+    .btn:hover { filter: brightness(1.08); }
+    .btn:disabled { opacity: 0.6; cursor: default; }
+    .topbar .btn { padding: 8px 16px; font-size: 0.9rem; }
+
+    /* Hero */
+    .hero { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; }
+    .hero .wrap { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding-top: 64px; padding-bottom: 72px; }
+    .eyebrow { font: bold 0.85rem var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: #f3c3ca; margin: 0 0 12px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; margin: 0 0 18px; }
+    .hero p.lead { font-size: 1.2rem; color: #dbe3f0; margin: 0 0 28px; max-width: 34em; }
+    .portrait {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: #2b4a7d; border: 6px solid rgba(255,255,255,0.9);
+      display: grid; place-items: center; overflow: hidden;
+      font: bold 4rem var(--serif); color: #fff;
+    }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    section + section { border-top: 1px solid var(--line); }
+    h2 { font-size: 1.8rem; line-height: 1.2; margin: 0 0 16px; }
+    .sub { color: var(--muted); margin: 0 0 28px; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .step { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+    .step .num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      display: grid; place-items: center; font: bold 1rem var(--sans); margin-bottom: 12px;
+    }
+    .step h3 { font: bold 1.1rem var(--sans); margin: 0 0 6px; }
+    .step p { margin: 0; color: var(--muted); font-size: 1rem; }
+
+    .quote {
+      font-size: 1.35rem; line-height: 1.5; font-style: italic;
+      border-left: 5px solid var(--red); padding: 4px 0 4px 22px; margin: 0;
+    }
+
+    /* Form */
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; box-shadow: 0 6px 24px rgba(20,40,75,0.06); }
+    label { display: block; font: bold 1rem var(--sans); margin: 18px 0 6px; }
+    label:first-child { margin-top: 0; }
+    .hint { font-weight: normal; color: var(--muted); }
+    input[type=text], textarea {
+      width: 100%; padding: 12px 14px;
+      font: 1rem var(--sans);
+      border: 1px solid #cfcabd; border-radius: 8px; background: #fff;
+    }
+    input[type=text]:focus, textarea:focus { outline: 3px solid rgba(31,58,102,0.25); border-color: var(--navy-2); }
+    textarea { min-height: 150px; resize: vertical; }
+    .radios { display: flex; gap: 24px; }
+    .check { display: flex; gap: 8px; align-items: center; font-weight: normal; margin: 0; }
+    .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+    .small { font: 0.9rem/1.5 var(--sans); color: var(--muted); }
+    #thanks h3 { margin-top: 0; }
+
+    /* Stops */
+    .stops { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .stop { background: var(--card); border: 1px dashed #cfcabd; border-radius: 12px; padding: 22px; }
+    .stop .when { font: bold 0.85rem var(--sans); color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; }
+    .stop h3 { font: bold 1.1rem var(--sans); margin: 6px 0; }
+    .stop p { margin: 0; color: var(--muted); font-size: 1rem; }
+
+    footer { background: var(--navy); color: #c9d3e3; padding: 36px 0; font: 0.95rem/1.6 var(--sans); }
+    footer a { color: #fff; }
+
+    @media (max-width: 720px) {
+      .hero .wrap { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 48px; }
+      .portrait { width: 140px; height: 140px; font-size: 2.6rem; order: -1; }
+      .steps { grid-template-columns: 1fr; }
+      section { padding: 40px 0; }
+      .topbar .btn { display: none; }
+    }
   </style>
 </head>
 <body>
-  <header>
+  <div class="topbar">
     <div class="wrap">
-      <h1>I want to hear your concerns.</h1>
-      <p class="lead">I'm Bert, and I'm traveling across our part of Ohio to listen, not to give speeches.</p>
+      <a class="brand" href="#">BERT KLEIN</a>
+      <a class="btn" href="#share">Share your concern</a>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">The listening tour</p>
+        <h1>I want to hear your concerns.</h1>
+        <p class="lead">I'm Bert Klein. I'm traveling across our part of Ohio to listen, not to give speeches.</p>
+        <a class="btn" href="#share">Tell me what's on your mind</a>
+      </div>
+      <!-- Swap the initials for a photo: <div class="portrait"><img src="bert.jpg" alt="Bert Klein"></div> -->
+      <div class="portrait" aria-hidden="true">BK</div>
     </div>
   </header>
 
-  <main class="wrap">
+  <main>
     <section>
-      <h2>Why I'm listening first</h2>
-      <p>I hear a lot on the news about what people supposedly care about. I'd rather hear it from you. Tell me what worries you most, for you or your family, and I'll read every answer.</p>
-    </section>
-
-    <section>
-      <h2>Tell me what's on your mind</h2>
-      <form id="concerns" class="card">
-        <label for="concern">What worries you most right now?</label>
-        <textarea id="concern" name="entry.274768185" required></textarea>
-
-        <label for="other">Anything else? <span class="hint">(optional)</span></label>
-        <textarea id="other" name="entry.1221338925" style="min-height:80px"></textarea>
-
-        <label for="zip">Town or ZIP code</label>
-        <input id="zip" name="entry.964970770" autocomplete="postal-code" required>
-
-        <label for="contact">Name and email or phone <span class="hint">(optional)</span></label>
-        <input id="contact" name="entry.1726748943">
-
-        <label>Is it OK to contact you about this?</label>
-        <label class="check"><input type="radio" name="entry.195950797" value="Yes"> Yes</label>
-        <label class="check"><input type="radio" name="entry.195950797" value="No"> No</label>
-
-        <button type="submit">Send</button>
-        <p class="small">Your answer is only used to understand what people in our area care about. It is never sold or shared.</p>
-      </form>
-      <div id="thanks" class="card" hidden>
-        <p><strong>Thank you.</strong> I read every answer. If you said it's OK to contact you, I'll be in touch.</p>
+      <div class="wrap narrow">
+        <h2>Why I'm listening first</h2>
+        <p>I hear a lot on the news about what people supposedly care about. I'd rather hear it from you.</p>
+        <p class="quote">"Tell me what worries you most, for you or your family. I'll read every answer."</p>
       </div>
-      <script>
-        // Answers go to the Google Form, which feeds the private "Concerns tracker" sheet.
-        document.getElementById('concerns').addEventListener('submit', function (e) {
-          e.preventDefault();
-          var form = e.target;
-          form.querySelector('button').disabled = true;
-          fetch('https://docs.google.com/forms/d/e/1FAIpQLSfoz-uZI-d_Of7YLH4da1_muJDeVaVvEYfBS7IKYUIiECpcxg/formResponse', {
-            method: 'POST',
-            mode: 'no-cors',
-            body: new URLSearchParams(new FormData(form))
-          }).finally(function () {
-            form.hidden = true;
-            document.getElementById('thanks').hidden = false;
-          });
-        });
-      </script>
     </section>
 
     <section>
-      <h2>Come talk in person</h2>
-      <ul class="stops">
-        <li><strong>Dates coming soon.</strong> <span class="small">Listening stops at diners, halls, and markets near you.</span></li>
-      </ul>
+      <div class="wrap">
+        <h2>How it works</h2>
+        <p class="sub">No speeches, no sales pitch. Just one question.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h3>You tell me</h3>
+            <p>Share what worries you, here online or in person at a stop near you.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h3>I read every one</h3>
+            <p>Every answer is kept in your own words and sorted by topic and town.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h3>I report back</h3>
+            <p>Each month I'll share what I'm hearing, so you can see if it matches the news.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="share">
+      <div class="wrap narrow">
+        <h2>Tell me what's on your mind</h2>
+        <p class="sub">It takes about two minutes. Only the first question and your town are required.</p>
+        <form id="concerns" class="card">
+          <label for="concern">What worries you most right now?</label>
+          <textarea id="concern" name="entry.274768185" required></textarea>
+
+          <label for="other">Anything else? <span class="hint">(optional)</span></label>
+          <textarea id="other" name="entry.1221338925" style="min-height:90px"></textarea>
+
+          <label for="zip">Town or ZIP code</label>
+          <input type="text" id="zip" name="entry.964970770" autocomplete="postal-code" required>
+
+          <label for="contact">Name and email or phone <span class="hint">(optional)</span></label>
+          <input type="text" id="contact" name="entry.1726748943">
+
+          <label>Is it OK to contact you about this?</label>
+          <div class="radios">
+            <label class="check"><input type="radio" name="entry.195950797" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="entry.195950797" value="No"> No</label>
+          </div>
+
+          <div class="form-foot">
+            <button class="btn" type="submit">Send</button>
+            <span class="small">Your answer is only used to understand what people in our area care about. It is never sold or shared.</span>
+          </div>
+        </form>
+        <div id="thanks" class="card" hidden>
+          <h3>Thank you.</h3>
+          <p>I read every answer. If you said it's OK to contact you, I'll be in touch.</p>
+        </div>
+      </div>
     </section>
 
     <section>
-      <h2>Follow along</h2>
-      <p>Each month I'll post what I'm hearing, in your words. <span class="small">TikTok and YouTube links coming soon.</span></p>
+      <div class="wrap">
+        <h2>Come talk in person</h2>
+        <p class="sub">Listening stops at diners, halls, and markets near you.</p>
+        <div class="stops">
+          <div class="stop">
+            <div class="when">Dates coming soon</div>
+            <h3>Medina County</h3>
+            <p>The first stops are being planned now.</p>
+          </div>
+          <div class="stop">
+            <div class="when">Want a stop near you?</div>
+            <h3>Invite me to your town</h3>
+            <p>Email <a href="mailto:bert@tellklein.com">bert@tellklein.com</a> and tell me where people gather.</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="wrap">
-    <!-- Add the "Paid for by" disclaimer here once Bert is a candidate. -->
+  <footer>
+    <div class="wrap">
+      <p><strong>Bert Klein</strong> &middot; <a href="mailto:bert@tellklein.com">bert@tellklein.com</a></p>
+      <p>TikTok and YouTube links coming soon.</p>
+      <!-- Add the "Paid for by" disclaimer here once Bert is a candidate. -->
+    </div>
   </footer>
+
+  <script>
+    // Answers go to the Google Form, which feeds the private "Concerns tracker" sheet.
+    document.getElementById('concerns').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = e.target;
+      form.querySelector('button').disabled = true;
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSfoz-uZI-d_Of7YLH4da1_muJDeVaVvEYfBS7IKYUIiECpcxg/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new URLSearchParams(new FormData(form))
+      }).finally(function () {
+        form.hidden = true;
+        document.getElementById('thanks').hidden = false;
+      });
+    });
+  </script>
 </body>
 </html>
