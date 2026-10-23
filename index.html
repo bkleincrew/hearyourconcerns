@@ -80,29 +80,45 @@
 
     <section>
       <h2>Tell me what's on your mind</h2>
-      <!--
-        PLACEHOLDER FORM. Not wired up yet.
-        Once Bert creates the Google Form, replace this <form> with the form's
-        embed <iframe>, or point action= at the form's formResponse URL.
-      -->
-      <form class="card" onsubmit="event.preventDefault(); alert('This form is not connected yet.');">
+      <form id="concerns" class="card">
         <label for="concern">What worries you most right now?</label>
-        <textarea id="concern" name="concern" required></textarea>
+        <textarea id="concern" name="entry.274768185" required></textarea>
 
         <label for="other">Anything else? <span class="hint">(optional)</span></label>
-        <textarea id="other" name="other" style="min-height:80px"></textarea>
+        <textarea id="other" name="entry.1221338925" style="min-height:80px"></textarea>
 
         <label for="zip">Town or ZIP code</label>
-        <input id="zip" name="zip" autocomplete="postal-code" required>
+        <input id="zip" name="entry.964970770" autocomplete="postal-code" required>
 
         <label for="contact">Name and email or phone <span class="hint">(optional)</span></label>
-        <input id="contact" name="contact">
+        <input id="contact" name="entry.1726748943">
 
-        <label class="check"><input type="checkbox" name="ok_to_contact"> It's OK to contact me about this.</label>
+        <label>Is it OK to contact you about this?</label>
+        <label class="check"><input type="radio" name="entry.195950797" value="Yes"> Yes</label>
+        <label class="check"><input type="radio" name="entry.195950797" value="No"> No</label>
 
         <button type="submit">Send</button>
         <p class="small">Your answer is only used to understand what people in our area care about. It is never sold or shared.</p>
       </form>
+      <div id="thanks" class="card" hidden>
+        <p><strong>Thank you.</strong> I read every answer. If you said it's OK to contact you, I'll be in touch.</p>
+      </div>
+      <script>
+        // Answers go to the Google Form, which feeds the private "Concerns tracker" sheet.
+        document.getElementById('concerns').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var form = e.target;
+          form.querySelector('button').disabled = true;
+          fetch('https://docs.google.com/forms/d/e/1FAIpQLSfoz-uZI-d_Of7YLH4da1_muJDeVaVvEYfBS7IKYUIiECpcxg/formResponse', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: new URLSearchParams(new FormData(form))
+          }).finally(function () {
+            form.hidden = true;
+            document.getElementById('thanks').hidden = false;
+          });
+        });
+      </script>
     </section>
 
     <section>
