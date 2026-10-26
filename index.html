@@ -92,6 +92,11 @@
     }
 
     /* Form */
+    .maxims { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .maxim { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--red); border-radius: 12px; padding: 24px; }
+    .maxim .saying { font-size: 1.3rem; line-height: 1.35; font-style: italic; margin: 0 0 12px; color: var(--navy); }
+    .maxim p { margin: 0; color: var(--muted); font-size: 1rem; }
+    .motto { font: bold 0.95rem var(--sans); color: #f3c3ca; margin: 0 0 6px; }
     .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; box-shadow: 0 6px 24px rgba(20,40,75,0.06); }
     label { display: block; font: bold 1rem var(--sans); margin: 18px 0 6px; }
     label:first-child { margin-top: 0; }
@@ -168,6 +173,23 @@
           <li>Cleveland</li><li>West Park</li><li>Olmsted Falls</li><li>Columbus</li><li>North Royalton</li><li>Brunswick</li>
         </ul>
         <p>I've worked in technology for more than 30 years, most of it protecting people's personal and financial information. I spent over two decades at Cleveland banks, including National City, KeyCorp, and Wells Fargo, keeping customer data safe. Today I'm a senior manager at a software company, leading the team that keeps its software supply chain secure. I studied at Cuyahoga Community College and The Ohio State University.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Words I live by</h2>
+        <p class="sub">Two simple rules I try to follow, at work, at home, and in public service.</p>
+        <div class="maxims">
+          <div class="maxim">
+            <p class="saying">"Treat people the way you want to be treated."</p>
+            <p>The Golden Rule. That goes for neighbors, for people who disagree with me, and for anyone who votes against me.</p>
+          </div>
+          <div class="maxim">
+            <p class="saying">"The greatest good for the greatest number."</p>
+            <p>Every vote should answer one question: does this do the most good for the most people?</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -252,6 +274,7 @@
 
   <footer>
     <div class="wrap">
+      <p class="motto">Treat people right. Do the most good for the most people.</p>
       <p><strong>Bert Klein</strong> &middot; <a href="mailto:bert@tellklein.com">bert@tellklein.com</a></p>
       <p>TikTok and YouTube links coming soon.</p>
       <!-- Add the "Paid for by" disclaimer here once Bert is a candidate. -->
